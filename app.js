@@ -1,42 +1,71 @@
 /* EX 1 THIS: DEFAULT BINDING */
 /* ------------------------------------------------------------------------- */
-/* default binding */
-
-/* function f1(){
-  var a = 5;
-  console.log(this.a);
+/* implicit binding */
+/* function foo() {
+	console.log( this.a );
 }
 
-global.a = 2;
+var obj1 = {
+	a: 1,
+	foo: foo
+};
 
-f1(); */
+var obj2 = {
+	a: 2,
+	foo: foo
+};
+
+obj1.foo(); 
+obj2.foo(); */
 
 /* ------------------------------------------------------------------------- */
-/* default binding and use strict 1 */
+/* implicit binding nested objects */
 
-/* function f1(){
-  'use strict';
-  var a = 5;
-  console.log(this.a);
+/* function foo() {
+	console.log( this.a );
 }
 
-global.a = 2;
+var obj1 = {
+	a: 1,
+	foo: foo
+};
 
-f1(); */
+var obj2 = {
+	a: 2,
+	obj: obj1
+};
+
+obj2.obj.foo(); */
 
 /* ------------------------------------------------------------------------- */
-/* default binding and use strict 2 */
-
- /* function f1(){
-  
-  var a = 5;
-  console.log(this.a);
+/* lost binding */
+/* function foo() {
+	console.log( this.a );
 }
 
-global.a = 2;
+var obj1 = {
+	a: 1,
+	foo: foo
+};
 
-(function(){
-  'use strict';
-  f1();
-})() */
+var bar = obj1.foo;
+bar(); */
 
+/* ------------------------------------------------------------------------- */
+/* lost binding - callback*/
+/* function foo() {
+	console.log( this.a );
+}
+
+function doFoo(fn) {
+	fn(); 
+}
+
+var obj = {
+	a: 2,
+	foo: foo
+};
+
+global.a = "oops, global";
+
+doFoo( obj.foo ); */

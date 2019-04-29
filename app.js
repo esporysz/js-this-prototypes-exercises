@@ -1,90 +1,17 @@
-/* EX 3 THIS: EXPLICIT BINDING */
+/* EX 4 THIS: NEW BINDING */
 
 /* ------------------------------------------------------------------------- */
-/* lost binding - fixing*/
+/* new binding */
 
-/* function foo() {
-	console.log( this.a );
+function foo(a) {
+  this.a = a;
+  this.f = function() {
+    console.log(a);
+  }
 }
 
-var obj1 = {
-	a: 1,
-	foo: foo
-};
-
-obj1.foo.call(obj1); */
-
-/* ------------------------------------------------------------------------- */
-/* hard binding - callback */
-
-/* function foo() {
-	console.log( this.a );
-}
-
-var obj = {
-	a: 2
-};
-
-var bar = function() {
-	foo.call( obj );
-};
-
-bar(); 
-setTimeout( bar, 100 ); 
-// when had binding it it is not possible to reassign context object
-bar.call( global );
- */
-
- /* ------------------------------------------------------------------------- */
-/* hard binding - callback */
-
-/* function foo() {
-	console.log( this.a );
-}
-
-var obj = {
-	a: 2
-};
-
-var bar = function() {
-	foo.call( obj );
-};
-
-bar(); 
-setTimeout( bar, 100 ); 
-// when had binding it it is not possible to reassign context object
-bar.call( global );
- */
-
-/* ------------------------------------------------------------------------- */
-/* hard binding with bind method */
-
-
-/* function foo() {
-	console.log( this.a );
-}
-
-var obj = {
-	a: 2
-};
-
-var bar = foo.bind(obj);
-
-bar(); 
-setTimeout( bar, 100 ); 
-// when had binding it it is not possible to reassign context object
-bar.call( global ); */
-
-/* ------------------------------------------------------------------------- */
-/* context or thisArg arguments */
-
-/* function foo(el) {
-	console.log( el, this.id );
-}
-
-var obj = {
-	id: "awesome"
-};
-
-// use `obj` as `this` for `foo(..)` calls
-[1, 2, 3].forEach(foo, obj) */
+var bar1 = new foo(1);
+var bar2 = new foo(2);
+console.log( bar1.a ); 
+bar1.f();
+console.log( bar2.a ); 

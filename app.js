@@ -1,45 +1,44 @@
-/* EX 6 THIS: CLOSURE AND INNER FUNCION */
+/* EX 7 objects */
+/* ------------------------------------------------------ */
+/* different ways of string declaration */
+/* var strPrimitive = "I am a string";
+console.log(typeof strPrimitive);							
+console.log(strPrimitive instanceof String);					
 
-/* ------------------------------------------------------------------------- */
-/* this inside closure */
+var strObject = new String( "I am a string" );
+console.log(typeof strObject);
+console.log(strObject instanceof String); */
 
-/* var obj = {
-  a: "a",
-  f: function(){
-    var closure = function(){
-      console.log(this.a);
-    };
-    return closure();
-  }
+/* ------------------------------------------------------ */
+/* Arrays are objects, so even though each index is a positive integer, you can also add properties onto the array */
+
+/* var myArray = [ "foo", 42, "bar" ];
+
+myArray.baz = "baz";
+
+console.log(myArray.length);
+
+console.log(myArray.baz); */
+
+/* ------------------------------------------------------ */
+/* getting property descriptors */
+
+/* var myObject = {
+	a: 2
 };
 
-obj.f() */
+console.log(Object.getOwnPropertyDescriptor( myObject, "a" )); */
 
-/* ------------------------------------------------------------------------- */
-/* fixing this inside closure */
-/* var obj = {
-  a: "a",
-  f: function(){
-    var self = this;
-    var closure = function(){
-      console.log(self.a);
-    };
-    return closure();
-  }
-};
+/* ------------------------------------------------------ */
+/* define property */
 
-obj.f() */
+/* var myObject = {};
 
-/* ------------------------------------------------------------------------- */
-/* more elegant fix */
-/* var obj = {
-  a: "a",
-  f: function(){
-    var closure = () => {
-      console.log(this.a);
-    };
-    return closure();
-  }
-};
+Object.defineProperty( myObject, "a", {
+	value: 2,
+	writable: true,
+	configurable: true,
+	enumerable: true
+} );
 
-obj.f() */
+console.log(myObject.a); */

@@ -1,44 +1,66 @@
-/* EX 7 objects */
+/* EX 8 objects' immutability */
 /* ------------------------------------------------------ */
-/* different ways of string declaration */
-/* var strPrimitive = "I am a string";
-console.log(typeof strPrimitive);							
-console.log(strPrimitive instanceof String);					
+/* create object constant */
+/* var myObject = {};
 
-var strObject = new String( "I am a string" );
-console.log(typeof strObject);
-console.log(strObject instanceof String); */
+Object.defineProperty( myObject, "FAVORITE_NUMBER", {
+	value: 42,
+	writable: false,
+	configurable: false
+} );
 
-/* ------------------------------------------------------ */
-/* Arrays are objects, so even though each index is a positive integer, you can also add properties onto the array */
+myObject.FAVORITE_NUMBER = 90;
 
-/* var myArray = [ "foo", 42, "bar" ];
-
-myArray.baz = "baz";
-
-console.log(myArray.length);
-
-console.log(myArray.baz); */
+console.log(myObject); */
 
 /* ------------------------------------------------------ */
-/* getting property descriptors */
-
+/* prevent extensions */
 /* var myObject = {
 	a: 2
 };
 
-console.log(Object.getOwnPropertyDescriptor( myObject, "a" )); */
+Object.preventExtensions( myObject );
+
+myObject.b = 3;
+console.log(myObject.b); */
 
 /* ------------------------------------------------------ */
-/* define property */
+/* seal object = prevent extensions and mark all its existing properties as configurable:false */
+/* var myObject = {
+	a: 2
+};
 
-/* var myObject = {};
+Object.seal( myObject );
 
-Object.defineProperty( myObject, "a", {
-	value: 2,
-	writable: true,
-	configurable: true,
-	enumerable: true
-} );
+myObject.b = 3;
+console.log(myObject);
+myObject.a = 3;
+console.log(myObject); */
 
+/* ------------------------------------------------------ */
+/* freeze object = prevents any changes to the object or to any of its direct properties */
+/* var myObject = {
+	a: 2
+};
+
+Object.freeze( myObject );
+
+myObject.b = 3;
+console.log(myObject);
+myObject.a = 3;
+console.log(myObject) */;
+
+/* -------------------------------------------------------------------- */
+/* define getters and setters */
+
+/* var myObject = {
+	get a() {
+		return this._a_;
+	},
+	set a(val) {
+		this._a_ = val * 2;
+	}
+};
+
+myObject.a = 2;
 console.log(myObject.a); */

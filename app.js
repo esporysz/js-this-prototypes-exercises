@@ -64,3 +64,57 @@ console.log(myObject) */;
 
 myObject.a = 2;
 console.log(myObject.a); */
+
+/* -------------------------------------------------------------------- */
+/* explain enumerable  */
+
+/* var myObject = { };
+
+Object.defineProperty(
+	myObject,
+	"a",
+	{ enumerable: true, value: 2 }
+);
+
+Object.defineProperty(
+	myObject,
+	"b",
+	{ enumerable: false, value: 3 }
+);
+
+console.log(myObject.b);
+console.log(("b" in myObject));
+console.log(myObject.hasOwnProperty( "b" )); 
+
+for (var k in myObject) {
+	console.log( k, myObject[k] );
+}
+
+console.log(myObject.propertyIsEnumerable( "a" )); 
+console.log(myObject.propertyIsEnumerable( "b" ));
+
+console.log(Object.keys( myObject ));
+console.log(Object.getOwnPropertyNames( myObject )); */
+
+/* -------------------------------------------------------------------- */
+/* for in, for each, for of  */
+
+/* var obj = {
+  a: 1,
+  b: 2,
+  c: 3
+};
+
+var arr = [4, 5, 6];
+
+for(let i in obj){
+  console.log(i);
+}
+
+arr.forEach((item) => {
+  console.log(item);
+})
+
+for(let i of arr){
+  console.log(i);
+} */

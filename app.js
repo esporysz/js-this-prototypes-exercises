@@ -1,120 +1,87 @@
-/* EX 8 objects' immutability */
+/* EX 9 prototypes */
 /* ------------------------------------------------------ */
-/* create object constant */
-/* var myObject = {};
+/* creating a new object */
 
-Object.defineProperty( myObject, "FAVORITE_NUMBER", {
-	value: 42,
+/* var anotherObject = {
+	a: 2
+};
+
+// create an object linked to `anotherObject`
+var myObject = Object.create( anotherObject );
+// hasOwnProperty looks only into myObject
+console.log(myObject.hasOwnProperty('a'));
+// in perform chain look-up
+console.log('a' in myObject); */
+
+/* ------------------------------------------------------ */
+/* shadowing a property case 1*/
+
+/* var anotherObject = {
+	a: 1
+};
+
+var myObject = Object.create( anotherObject );
+myObject.a = 2;
+console.log(anotherObject);
+console.log(myObject); */
+
+/* ------------------------------------------------------ */
+/* shadowing a property case 2 */
+/* var anotherObject = {};
+Object.defineProperty( anotherObject, 'a', {
+	value: 1,
 	writable: false,
-	configurable: false
+  configurable: false,
+  enumerable: true
 } );
 
-myObject.FAVORITE_NUMBER = 90;
-
+var myObject = Object.create( anotherObject );
+myObject.a = 2;
+console.log(anotherObject);
 console.log(myObject); */
 
 /* ------------------------------------------------------ */
-/* prevent extensions */
-/* var myObject = {
-	a: 2
-};
-
-Object.preventExtensions( myObject );
-
-myObject.b = 3;
-console.log(myObject.b); */
-
-/* ------------------------------------------------------ */
-/* seal object = prevent extensions and mark all its existing properties as configurable:false */
-/* var myObject = {
-	a: 2
-};
-
-Object.seal( myObject );
-
-myObject.b = 3;
-console.log(myObject);
-myObject.a = 3;
-console.log(myObject); */
-
-/* ------------------------------------------------------ */
-/* freeze object = prevents any changes to the object or to any of its direct properties */
-/* var myObject = {
-	a: 2
-};
-
-Object.freeze( myObject );
-
-myObject.b = 3;
-console.log(myObject);
-myObject.a = 3;
-console.log(myObject) */;
-
-/* -------------------------------------------------------------------- */
-/* define getters and setters */
-
-/* var myObject = {
+/* shadowing a property case 3 */
+/* var anotherObject = {
 	get a() {
 		return this._a_;
 	},
 	set a(val) {
-		this._a_ = val * 2;
-	}
-};
+		this._a_ = 5;
+  }
+}
 
+var myObject = Object.create( anotherObject );
 myObject.a = 2;
-console.log(myObject.a); */
+console.log(anotherObject);
+console.log(myObject); */
 
-/* -------------------------------------------------------------------- */
-/* explain enumerable  */
+/* ------------------------------------------------------ */
+/* consctructor call */
+/* By calling Foo(..) with new in front of it, we've constructed a new object and set that new object as the this for the call of Foo(..).  */
 
-/* var myObject = { };
-
-Object.defineProperty(
-	myObject,
-	"a",
-	{ enumerable: true, value: 2 }
-);
-
-Object.defineProperty(
-	myObject,
-	"b",
-	{ enumerable: false, value: 3 }
-);
-
-console.log(myObject.b);
-console.log(("b" in myObject));
-console.log(myObject.hasOwnProperty( "b" )); 
-
-for (var k in myObject) {
-	console.log( k, myObject[k] );
+/* function Foo(name) {
+	this.name = name;
 }
 
-console.log(myObject.propertyIsEnumerable( "a" )); 
-console.log(myObject.propertyIsEnumerable( "b" ));
+Foo.prototype.constructor === Foo; // true
 
-console.log(Object.keys( myObject ));
-console.log(Object.getOwnPropertyNames( myObject )); */
+var a = new Foo('Eve');
+console.log(a); */
 
-/* -------------------------------------------------------------------- */
-/* for in, for each, for of  */
+/* ------------------------------------------------------ */
+/* method call*/
 
-/* var obj = {
-  a: 1,
-  b: 2,
-  c: 3
+/* function Foo(name) {
+	this.name = name;
+}
+
+Foo.prototype.myName = function() {
+	return this.name;
 };
 
-var arr = [4, 5, 6];
+var a = new Foo( "a" );
+var b = new Foo( "b" );
 
-for(let i in obj){
-  console.log(i);
-}
-
-arr.forEach((item) => {
-  console.log(item);
-})
-
-for(let i of arr){
-  console.log(i);
-} */
+a.myName(); // "a"
+b.myName(); */

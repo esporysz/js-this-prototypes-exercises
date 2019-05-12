@@ -85,3 +85,53 @@ var b = new Foo( "b" );
 
 a.myName(); // "a"
 b.myName(); */
+
+/* ------------------------------------------------------ */
+/* prototypal inheritance */
+
+/* function Foo(name) {
+	this.name = name;
+}
+
+Foo.prototype.myName = function() {
+	return this.name;
+};
+
+function Bar(name,label) {
+	Foo.call( this, name );
+	this.label = label;
+}
+Object.setPrototypeOf( Bar.prototype, Foo.prototype );
+
+Bar.prototype.myLabel = function() {
+	return this.label;
+};
+
+var a = new Bar( "a", "obj a" );
+
+console.log(a.myName());
+console.log(a.myLabel()); */
+
+/* ------------------------------------------------------ */
+/* inspecting class relationships */
+
+/* function Foo(name) {
+	this.name = name;
+}
+
+function Bar(name,label) {
+	Foo.call( this, name );
+	this.label = label;
+}
+Object.setPrototypeOf( Bar.prototype, Foo.prototype );
+
+var a = new Bar( "a", "obj a" );
+
+console.log(a instanceof Bar);
+console.log(a instanceof Foo);
+console.log(Foo.prototype.isPrototypeOf(a));
+console.log(Bar.prototype.isPrototypeOf(a));
+console.log(Object.getPrototypeOf( a ) === Foo.prototype);
+console.log(Object.getPrototypeOf( a ) === Bar.prototype);
+
+ */
